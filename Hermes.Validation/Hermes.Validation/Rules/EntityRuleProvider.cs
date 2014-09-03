@@ -1,128 +1,131 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Hermes.Validation.Interfaces;
 
 namespace Hermes.Validation.Rules
 {
-    /// <summary>
-    /// An interface representing a rule provider that works with the Mvc framework
-    /// </summary>
     public class EntityRuleProvider<TEntity> : IEntityRuleProvider<TEntity>
     {
-        #region Properties
+        private readonly Dictionary<string, FieldRule<TEntity>> _propertyRules;
 
-        private Dictionary<string, IRuleCollection> _propertyRules = new Dictionary<string, IRuleCollection>();
-
-        public Dictionary<string, IRuleCollection> PropertyRules
+        public Dictionary<string, FieldRule<TEntity>> PropertyRules
         {
             get { return _propertyRules; }
-            set { _propertyRules = value; }
         }
 
-        private readonly RuleCollection<TEntity> _entityRules = new RuleCollection<TEntity>();
+        private readonly RuleCollection<TEntity> _entityRules;
 
         public RuleCollection<TEntity> EntityRules
         {
             get { return _entityRules; }
         }
 
-        #endregion
+        public EntityRuleProvider()
+        {
+            _propertyRules = new Dictionary<string, FieldRule<TEntity>>();
+            _entityRules = new RuleCollection<TEntity>();
+        }
 
-        #region Methods
-
-        /// <summary>
-        /// Adds a rule to the rule provider
-        /// </summary>
         public void AddRule<TFieldType>(string fieldName, IRule<TFieldType> rule)
         {
-            if (!_propertyRules.ContainsKey(fieldName))
+            FieldRules<TEntity, TFieldType> fieldRule;
+
+            if (!PropertyRules.ContainsKey(fieldName))
             {
-                var ruleCollection = (IRuleCollection)Activator.CreateInstance(typeof(RuleCollection<>).MakeGenericType(typeof(TFieldType)));
-                _propertyRules.Add(fieldName, ruleCollection);
+                var getter = GetPropGetter<TFieldType>(fieldName);
+                var setter = GetPropSetter<TFieldType>(fieldName);
+                fieldRule = new FieldRules<TEntity, TFieldType>(getter, setter);
+                _propertyRules.Add(fieldName, fieldRule);
+            }
+            else
+            {
+                fieldRule = (FieldRules<TEntity, TFieldType>)PropertyRules[fieldName];
             }
 
-            _propertyRules[fieldName].Add(rule);
+            fieldRule.AddRule(rule);
         }
 
-        /// <summary>
-        /// Validates the entity and returns an IDictionary of fieldName to broken rules pairs
-        /// </summary>
+        public void AddRules<TFieldType>(string fieldName, params IRule<TFieldType>[] rules)
+        {
+            foreach (var rule in rules)
+            {
+                AddRule(fieldName, rule);
+            }
+        }
+
+        public void AddRules<TFieldType>(Expression<Func<TEntity, TFieldType>> expression, params IRule<TFieldType>[] rules)
+        {
+            string fieldName = GetMemberInfo(expression).Member.Name;
+            AddRules(fieldName, rules);
+        }
+
+        private static MemberExpression GetMemberInfo(Expression method)
+        {
+            var lambda = method as LambdaExpression;
+            if (lambda == null)
+                throw new ArgumentNullException("method");
+
+            MemberExpression memberExpr = null;
+
+            if (lambda.Body.NodeType == ExpressionType.Convert)
+            {
+                memberExpr =
+                    ((UnaryExpression)lambda.Body).Operand as MemberExpression;
+            }
+            else if (lambda.Body.NodeType == ExpressionType.MemberAccess)
+            {
+                memberExpr = lambda.Body as MemberExpression;
+            }
+
+            if (memberExpr == null)
+                throw new ArgumentException("method");
+
+            return memberExpr;
+        }
+
+        private static Func<TEntity, TFieldType> GetPropGetter<TFieldType>(string propertyName)
+        {
+            var paramExpression = Expression.Parameter(typeof(TEntity), "value");
+
+            var propertyGetterExpression = Expression.Property(paramExpression, propertyName);
+
+            var result =
+                Expression.Lambda<Func<TEntity, TFieldType>>(propertyGetterExpression, paramExpression).Compile();
+
+            return result;
+        }
+
+        private static Action<TEntity, TFieldType> GetPropSetter<TFieldType>(string propertyName)
+        {
+            var paramExpression = Expression.Parameter(typeof(TEntity));
+
+            var paramExpression2 = Expression.Parameter(typeof(TFieldType), propertyName);
+
+            var propertyGetterExpression = Expression.Property(paramExpression, propertyName);
+
+            var result = Expression.Lambda<Action<TEntity, TFieldType>>
+            (
+                Expression.Assign(propertyGetterExpression, paramExpression2), paramExpression, paramExpression2
+            ).Compile();
+
+            return result;
+        }
+
         public IDictionary<string, IEnumerable<string>> Validate(TEntity entity)
         {
-            var modelState = new Dictionary<string, IEnumerable<string>>();
-
-            //Check each prpoerty in the entity
-            foreach (var property in entity.GetType().GetProperties())
-            {
-                //If mapped in the rules dictionary
-                if (PropertyRules.ContainsKey(property.Name))
-                {
-                    //Gets a rulecollection type on generic type based on the property type
-                    Type type = typeof(RuleCollection<>).MakeGenericType(new[] { property.PropertyType });
-
-                    if (PropertyRules[property.Name].GetType() == type)
-                    {
-                        //Invokes 'Check' method and checks the rules
-                        var brokenRules = (string[])type.InvokeMember(
-                            "Check",
-                            System.Reflection.BindingFlags.InvokeMethod,
-                            null,
-                            PropertyRules[property.Name],
-                            new[] { property.GetValue(entity, null) });
-
-                        //Adds the broken rules to the entity state
-                        modelState.Add(property.Name, brokenRules);
-                    }
-                }
-            }
-
-            //Adds the broken rules for the entity to the entity state
-            modelState.Add(string.Empty, EntityRules.Check(entity));
-
-            return modelState;
+            var result = PropertyRules
+                .ToDictionary<KeyValuePair<string, FieldRule<TEntity>>, string, IEnumerable<string>>(rule => rule.Key, rule => rule.Value.Check(entity));
+ 
+            result.Add(string.Empty, EntityRules.Check(entity));
+            return result;
         }
 
-        /// <summary>
-        /// Cleans the entity using any enforcable rules
-        /// </summary>
-        /// <remarks>
-        /// Required testing
-        /// </remarks>
         public TEntity Clean(TEntity entity)
         {
-            foreach (var property in entity.GetType().GetProperties())
-            {
-                //TODO: Requires testing
-                if (PropertyRules.ContainsKey(property.Name))
-                {
-                    var enforcableRules = PropertyRules[property.Name].GetIRules().Where(r => r is IEnforcable);
-
-                    foreach (var enforcableRule in enforcableRules)
-                    {
-                        //Gets a rulecollection type on generic type based on the property type
-                        var type = typeof(IEnforcable<>).MakeGenericType(new[] { property.PropertyType });
-
-                        if (PropertyRules[property.Name].GetType() == type)
-                        {
-                            //Invokes 'Check' method and checks the rules
-                            property.SetValue(
-                                entity,
-                                type.InvokeMember(
-                                    "Enforce",
-                                    System.Reflection.BindingFlags.InvokeMethod,
-                                    null,
-                                    enforcableRule,
-                                    new[] { property.GetValue(entity, null) }), null);
-                        }
-                    }
-                }
-            }
-
-            return entity;
+            return PropertyRules.Aggregate(entity, (current, r) => r.Value.Clean(current));
         }
-
-        #endregion
     }
 
     public interface IEntityRuleProvider<TEntity>

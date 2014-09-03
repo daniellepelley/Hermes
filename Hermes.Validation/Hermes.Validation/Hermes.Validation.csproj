@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IRule.cs" />
     <Compile Include="Rules\EntityRuleProvider.cs" />
+    <Compile Include="Rules\FieldRules.cs" />
     <Compile Include="Rules\MaximumLengthRule.cs" />
     <Compile Include="Rules\MinimumLengthRule.cs" />
     <Compile Include="Rules\Rule.cs" />

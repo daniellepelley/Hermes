@@ -5,7 +5,7 @@
         string Message { get; }
     }
 
-    public interface IRule<T>
+    public interface IRule<in T>
     : IRule
     {
         string Check(T value);
