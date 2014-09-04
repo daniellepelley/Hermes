@@ -12,13 +12,11 @@ namespace Hermes.Validation.Rules
         : Rule<string>,
         IEnforcable<string>
     {
-
-        private CasingType casingType = CasingType.Normal;
+        private CasingType _casingType = CasingType.Normal;
 
         public CasingType CasingType
         {
-            set { casingType = value; }
-            get { return casingType; }
+            get { return _casingType; }
         }
 
         public CasingRule()
@@ -29,14 +27,14 @@ namespace Hermes.Validation.Rules
                 {
                     return string.Empty;
                 }
-                if (casingType == CasingType.Lower)
+                if (_casingType == CasingType.Lower)
                 {
                     if (value.ToLower() != value)
                     {
                         return "Must be all lowercase";
                     }
                 }
-                if (casingType == CasingType.Upper)
+                if (_casingType == CasingType.Upper)
                 {
                     if (value.ToUpper() != value)
                     {
@@ -50,19 +48,16 @@ namespace Hermes.Validation.Rules
         public CasingRule(CasingType casingType)
             : this()
         {
-            this.casingType = casingType;
+            _casingType = casingType;
         }
 
-        /// <summary>
-        /// Changes the casing as required
-        /// </summary>
         public string Enforce(string value)
         {
-            if (casingType == CasingType.Lower)
+            if (_casingType == CasingType.Lower)
             {
                 return value.ToLower();
             }
-            if (casingType == CasingType.Upper)
+            if (_casingType == CasingType.Upper)
             {
                 return value.ToUpper();
             }
@@ -73,11 +68,11 @@ namespace Hermes.Validation.Rules
         {
             get
             {
-                if (casingType == CasingType.Lower)
+                if (_casingType == CasingType.Lower)
                 {
                     return "Must be all lowercase";
                 }
-                if (casingType == CasingType.Upper)
+                if (_casingType == CasingType.Upper)
                 {
                     return "Must be all uppercase";
                 }

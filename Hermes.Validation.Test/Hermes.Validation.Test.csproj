@@ -49,6 +49,8 @@
     <Compile Include="Components\RuleCollectionTest.cs" />
     <Compile Include="Components\EntityRuleProviderTest.cs" />
     <Compile Include="Rules\CasingRuleTest.cs" />
+    <Compile Include="Rules\ContainsRule.cs" />
+    <Compile Include="Rules\ContainsRuleTest.cs" />
     <Compile Include="Rules\MinimumLengthRuleTest.cs" />
     <Compile Include="Rules\MaximumLengthRuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
