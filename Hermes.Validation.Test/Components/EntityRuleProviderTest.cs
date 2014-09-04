@@ -2,7 +2,7 @@
 using Hermes.Validation.Rules;
 using NUnit.Framework;
 
-namespace Hermes.Validation.Test
+namespace Hermes.Validation.Test.Components
 {
     [TestFixture]
     public class EntityRuleProviderTest

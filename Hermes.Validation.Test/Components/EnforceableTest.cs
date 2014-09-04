@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hermes.Validation.Interfaces;
+﻿using Hermes.Validation.Interfaces;
 using Hermes.Validation.Rules;
 using NUnit.Framework;
 
-namespace Hermes.Validation.Test
+namespace Hermes.Validation.Test.Components
 {
     [TestFixture]
     public class EnforceableTest

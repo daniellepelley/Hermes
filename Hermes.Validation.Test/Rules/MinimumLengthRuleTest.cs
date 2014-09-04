@@ -1,7 +1,7 @@
 ﻿using Hermes.Validation.Rules;
 using NUnit.Framework;
 
-namespace Hermes.Validation.Test
+namespace Hermes.Validation.Test.Rules
 {
     [TestFixture]
     public class MinimumLengthRuleTest
