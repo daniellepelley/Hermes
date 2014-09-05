@@ -1,4 +1,4 @@
-﻿namespace Hermes.Validation.Rules
+﻿namespace Hermes.Validation.Rules.Preset.String
 {
     public class MinimumLengthRule : Rule<string>
     {

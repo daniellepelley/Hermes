@@ -42,11 +42,14 @@
     <Compile Include="Interfaces\IEnforcable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IRule.cs" />
-    <Compile Include="Rules\CasingRule.cs" />
+    <Compile Include="Rules\Preset\Numeric\MinimumRule.cs" />
+    <Compile Include="Rules\Preset\String\CasingRule.cs" />
+    <Compile Include="Rules\ComparisonRuleBase.cs" />
     <Compile Include="Rules\EntityRuleProvider.cs" />
     <Compile Include="Rules\FieldRules.cs" />
-    <Compile Include="Rules\MaximumLengthRule.cs" />
-    <Compile Include="Rules\MinimumLengthRule.cs" />
+    <Compile Include="Rules\Preset\String\MaximumLengthRule.cs" />
+    <Compile Include="Rules\Preset\Numeric\MaximumRule.cs" />
+    <Compile Include="Rules\Preset\String\MinimumLengthRule.cs" />
     <Compile Include="Rules\Rule.cs" />
     <Compile Include="Rules\RulesCollection.cs" />
   </ItemGroup>

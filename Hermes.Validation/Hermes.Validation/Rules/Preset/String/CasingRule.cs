@@ -1,6 +1,6 @@
 ﻿using Hermes.Validation.Interfaces;
 
-namespace Hermes.Validation.Rules
+namespace Hermes.Validation.Rules.Preset.String
 {
     //To be replaced with forms version.
     public enum CasingType { Normal, Lower, Upper };

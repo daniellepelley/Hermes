@@ -1,4 +1,4 @@
-﻿using Hermes.Validation.Rules;
+﻿using Hermes.Validation.Rules.Preset.String;
 using NUnit.Framework;
 
 namespace Hermes.Validation.Test.Rules

@@ -1,6 +1,6 @@
 ﻿using Hermes.Validation.Interfaces;
 
-namespace Hermes.Validation.Rules
+namespace Hermes.Validation.Rules.Preset.String
 {
     /// <summary>
     /// A rule which sets a maximum _length for a string.
