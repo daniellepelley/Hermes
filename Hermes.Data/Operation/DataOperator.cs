@@ -4,12 +4,13 @@ namespace Hermes.Data.Operation
 {
     public class DataOperator
     {
-        private readonly List<Filter> _filters;
-        private readonly List<OrderBy> _orderBys;
-        private readonly Pager _pager;
+        private Filter[] _filters;
+        private List<OrderBy> _orderBys;
+        private Pager _pager;
 
-        public List<Filter> Filters
+        public Filter[] Filters
         {
+            set { _filters = value;  }
             get { return _filters; }
         }
 
@@ -25,7 +26,7 @@ namespace Hermes.Data.Operation
 
         public DataOperator()
         {
-            _filters = new List<Filter>();
+            _filters = new Filter[0];
             _orderBys = new List<OrderBy>();
             _pager = new Pager();
         }

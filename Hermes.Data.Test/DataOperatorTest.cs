@@ -20,7 +20,7 @@ namespace Hermes.Data.Test
             var dataOperator = new DataOperatorBuilder()
                 .AddOrderBy("Title")
                 .Build();
-
+            
             var actual = list.AsQueryable().GetData(dataOperator).ToArray();
 
             CollectionAssert.AreEqual(expected, actual);

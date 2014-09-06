@@ -1,3 +1,4 @@
+using System.Linq;
 using Hermes.Data.Operation;
 
 namespace Hermes.Data.Test
@@ -42,7 +43,10 @@ namespace Hermes.Data.Test
                 FilterValue = filterValue
             };
 
-            _dataOperator.Filters.Add(dataFilter);
+            var list = _dataOperator.Filters.ToList();
+            list.Add(dataFilter);
+
+            _dataOperator.Filters = list.ToArray();
             
             return this;
         }
@@ -53,6 +57,5 @@ namespace Hermes.Data.Test
             _dataOperator.Pager.PageNumber = pageNumber;
             return this;
         }
-
     }
 }

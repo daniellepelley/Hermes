@@ -63,6 +63,8 @@ namespace Hermes.Data.Operation
 
             Expression expression = null;
 
+            value = Convert.ChangeType(value, type);
+
             if (filterOperator == "eq")
             {
                 expression = Expression.Equal(expr, Expression.Constant(value));

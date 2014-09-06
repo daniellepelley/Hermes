@@ -42,7 +42,6 @@ namespace Hermes.Data.Integration.Test
         [Test]
         public void SortedFilteredPaged()
         {
-            var entities = new TestDatabaseEntities();
             var list = TestList().ToArray();
             
             var expected = list
@@ -58,9 +57,44 @@ namespace Hermes.Data.Integration.Test
                 .Paging(3, 2)
                 .Build();
 
-            var actual = entities.TestClasses.GetData(dataOperator).ToArray();
+            var actual = GetData(dataOperator).ToArray();
 
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void SortedFilteredPagedFromJson()
+        {
+            var list = TestList().ToArray();
+
+            var expected = list
+                .Where(x => x.Number == 5)
+                .OrderByDescending(x => x.Title)
+                .Skip(3)
+                .Take(3)
+                .ToArray();
+
+            var json = @"{
+                'Filters':[{'FilterProperty':'Number','FilterOperator':'eq','FilterValue':5}],
+                'OrderBys':[{'SortProperty':'Title','SortDirection': 'DESC'}],
+                'Pager':{'PageNumber':2,'NumberPerPage':3}}";
+             
+            var actual = GetData(json).ToArray();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        public TestClass[] GetData(string json)
+        {
+            var dataOperator = Newtonsoft.Json.JsonConvert.DeserializeObject<DataOperator>(json);
+            
+            return GetData(dataOperator);
+        }
+
+        public TestClass[] GetData(DataOperator dataOperator)
+        {
+            var entities = new TestDatabaseEntities();
+            return entities.TestClasses.GetData(dataOperator).ToArray();
         }
     }
 }
