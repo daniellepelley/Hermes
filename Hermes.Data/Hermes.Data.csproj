@@ -54,6 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operation\Filter.cs" />
+    <Compile Include="Operation\DataOperations.cs" />
+    <Compile Include="Operation\DataOperator.cs" />
+    <Compile Include="Operation\OrderBy.cs" />
+    <Compile Include="Operation\Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityFramework\EFRepositoryFactory.cs" />
     <Compile Include="Repositories\ConcreteFactories\EmptyRepositoryFactory.cs" />

@@ -59,9 +59,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\Hermes.Validation\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFrameworkRepositoryFactoryTest.cs" />
+    <Compile Include="DataOperatorBuilder.cs" />
+    <Compile Include="DataOperatorTest.cs" />
+    <Compile Include="Helpers\TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
