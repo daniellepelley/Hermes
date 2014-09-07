@@ -1,4 +1,6 @@
-﻿using Hermes.Validation.Rules;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Hermes.Validation.Rules;
 using Hermes.Validation.Rules.Preset.Numeric;
 using NUnit.Framework;
 
@@ -35,6 +37,23 @@ namespace Hermes.Validation.Test.Rules
             var actual = sut.CheckValid(4);
 
             Assert.IsFalse(actual);
+        }
+
+        [Test]
+        public void Sortable()
+        {
+            var list = new List<MinimumRule>
+            {
+                new MinimumRule(5),
+                new MinimumRule(3),
+                new MinimumRule(4)
+            };
+
+            var expected = list.OrderBy(x => x.ComparisonValue);
+
+            list.Sort();
+
+            CollectionAssert.AreEqual(expected, list);
         }
     }
 }

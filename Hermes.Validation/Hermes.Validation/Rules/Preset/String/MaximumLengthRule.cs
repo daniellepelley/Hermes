@@ -9,32 +9,22 @@ namespace Hermes.Validation.Rules.Preset.String
         : Rule<string>,
         IEnforcable<string>
     {
-        #region Parameters
-
         private int? _length;
-        /// <summary>
-        /// Maximum _length for the string.
-        /// </summary>
+
         public int? Length
         {
-            set { _length = (value < 0 ? 0 : value); }
+            //set { _length = (value < 0 ? 0 : value); }
             get { return _length; }
         }
 
         public override string Message
         {
-            get { return "Must be " + _length.ToString() + " or less characters in _length"; }
+            get { return "Must be " + _length + " or less characters in _length"; }
         }
 
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        /// A rule which sets a maximum _length for a string.
-        /// </summary>
-        public MaximumLengthRule()
+        public MaximumLengthRule(int maxLength)
         {
+            _length = maxLength;
             Logic = value =>
             {
                 if (string.IsNullOrEmpty(value)
@@ -44,30 +34,10 @@ namespace Hermes.Validation.Rules.Preset.String
                 {
                     return string.Empty;
                 }
-                if (_length > 0)
-                    return Message;
-                return string.Empty;
+                return Message;
             };
         }
 
-        /// <summary>
-        /// A rule which sets a maximum _length for a string.
-        /// </summary>
-        public MaximumLengthRule(int maxLength)
-            : this()
-        {
-            _length = maxLength;
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>h
-        /// Compares the current instance with another object of the same type and returns
-        //  an integer that indicates whether the current instance precedes, follows,
-        //  or occurs in the same position in the sort order as the other object.
-        /// </summary>
         public override int CompareTo(object obj)
         {
             if (((MaximumLengthRule)obj).Length <= _length)
@@ -75,9 +45,6 @@ namespace Hermes.Validation.Rules.Preset.String
             return -1;
         }
 
-        /// <summary>
-        /// Enforces the rule
-        /// </summary>
         public string Enforce(string value)
         {
             if (_length.HasValue &&
@@ -88,7 +55,5 @@ namespace Hermes.Validation.Rules.Preset.String
 
             return value;
         }
-
-        #endregion
     }
 }

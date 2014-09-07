@@ -12,7 +12,7 @@ namespace Hermes.Validation.Rules.Preset.String
         : Rule<string>,
         IEnforcable<string>
     {
-        private CasingType _casingType = CasingType.Normal;
+        private readonly CasingType _casingType = CasingType.Normal;
 
         public CasingType CasingType
         {

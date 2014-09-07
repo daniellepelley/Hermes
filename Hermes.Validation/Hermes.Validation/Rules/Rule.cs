@@ -19,12 +19,6 @@ namespace Hermes.Validation.Rules
             _logic = t => string.Empty;
         }
 
-        //protected Rule(Func<T, string> logic)
-        //    : this()
-        //{
-
-        //}
-
         protected Rule(string message, Func<T, string> logic)
         {
             _message = message;

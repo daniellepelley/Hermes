@@ -2,8 +2,6 @@
 {
     public class MinimumLengthRule : Rule<string>
     {
-        #region Parameters
-
         private int? _length;
 
         public int? Length
@@ -20,12 +18,9 @@
             }
         }
 
-        #endregion
-
-        #region Constructors
-
-        public MinimumLengthRule()
+        public MinimumLengthRule(int minLength)
         {
+            Length = minLength;
             Logic = value =>
             {
                 if (string.IsNullOrEmpty(value)
@@ -35,22 +30,9 @@
                 {
                     return string.Empty;
                 }
-                if (_length > 0)
-                    return Message;
-                return string.Empty;
+                return Message;
             };
-
         }
-
-        public MinimumLengthRule(int minLength)
-            : this()
-        {
-            Length = minLength;
-        }
-
-        #endregion
-
-        #region Methods
 
         public override int CompareTo(object obj)
         {
@@ -59,8 +41,5 @@
 
             return -1;
         }
-
-        #endregion
-
     }
 }

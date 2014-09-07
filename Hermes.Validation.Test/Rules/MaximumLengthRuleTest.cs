@@ -1,4 +1,6 @@
-﻿using Hermes.Validation.Rules;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Hermes.Validation.Rules;
 using Hermes.Validation.Rules.Preset.String;
 using NUnit.Framework;
 
@@ -8,7 +10,7 @@ namespace Hermes.Validation.Test.Rules
     public class MaximumLengthRuleTest
     {
         [Test]
-        public void WhenTextIsValid()
+        public void Valid()
         {
             var sut = new MaximumLengthRule(5);
 
@@ -18,7 +20,17 @@ namespace Hermes.Validation.Test.Rules
         }
 
         [Test]
-        public void WhenTextIsInvalid()
+        public void LengthIsZero()
+        {
+            var sut = new MaximumLengthRule(0);
+
+            var actual = sut.CheckValid("valid");
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void Invalid()
         {
             var sut = new MaximumLengthRule(5);
 
@@ -28,7 +40,7 @@ namespace Hermes.Validation.Test.Rules
         }
 
         [Test]
-        public void WhenTextIsNull()
+        public void ValueIsNull()
         {
             var sut = new MaximumLengthRule(5);
 
@@ -38,7 +50,7 @@ namespace Hermes.Validation.Test.Rules
         }
 
         [Test]
-        public void WhenTextIsEmpty()
+        public void ValueIsEmpty()
         {
             var sut = new MaximumLengthRule(5);
 
@@ -46,5 +58,24 @@ namespace Hermes.Validation.Test.Rules
 
             Assert.IsTrue(actual);
         }
+
+        [Test]
+        public void Sortable()
+        {
+            var list = new List<MaximumLengthRule>
+            {
+                new MaximumLengthRule(5),
+                new MaximumLengthRule(3),
+                new MaximumLengthRule(4)
+            };
+
+            var expected = list.OrderBy(x => x.Length);
+
+            list.Sort();
+
+            CollectionAssert.AreEqual(expected, list);
+        }
+
+
     }
 }

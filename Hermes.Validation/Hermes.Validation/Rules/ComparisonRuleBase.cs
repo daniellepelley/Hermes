@@ -19,13 +19,7 @@ public abstract class ComparisonRuleBase<T> : Rule<T>
         get { return _comparisonValue; }
     }
 
-    private Func<T?, T?, bool> _comparisonFunc;
-
-    public Func<T?, T?, bool> ComparisonFunc
-    {
-        get { return _comparisonFunc; }
-        set { _comparisonFunc = value; }
-    }
+    private readonly Func<T?, T?, bool> _comparisonFunc;
 
     protected ComparisonRuleBase(Func<T?, T?, bool> comparisonFunc, string message)
     {
@@ -40,11 +34,4 @@ public abstract class ComparisonRuleBase<T> : Rule<T>
         _comparisonFunc = comparisonFunc;
         _message = message;
     }
-
-    protected ComparisonRuleBase(T comparisonValue, Func<T?, T?, bool> comparisonFunc, string text)
-        : this(comparisonFunc, text)
-    {
-        _comparisonValue = comparisonValue;
-    }
-
 }
