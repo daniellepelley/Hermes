@@ -6,10 +6,10 @@ namespace Hermes.Data.Repositories.Interfaces
         : IReadOnlyRepository<T>
         where T : class
     {
-        void Save(T entity);
+        //void Save(T entity);
 
         void Delete(T entity);
 
-        void Create(T entity);
+        void Insert(T entity);
     }
 }

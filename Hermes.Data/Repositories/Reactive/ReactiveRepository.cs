@@ -37,10 +37,10 @@ namespace Hermes.Data.Repositories.Reactive
             this._repository = repository;
         }
 
-        public async Task SaveAsync(T entity)
-        {
-            await Task.Factory.StartNew(() => _repository.Save(entity));
-        }
+        //public async Task SaveAsync(T entity)
+        //{
+        //    await Task.Factory.StartNew(() => _repository.Save(entity));
+        //}
 
         public async Task DeleteAsync(T entity)
         {
@@ -49,7 +49,7 @@ namespace Hermes.Data.Repositories.Reactive
 
         public async Task CreateAsync(T entity)
         {
-            await Task.Factory.StartNew(() => _repository.Create(entity));
+            await Task.Factory.StartNew(() => _repository.Insert(entity));
         }
     }
 }

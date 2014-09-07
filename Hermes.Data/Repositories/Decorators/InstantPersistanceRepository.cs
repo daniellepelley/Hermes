@@ -23,11 +23,11 @@ namespace Hermes.Data.Repositories.Decorators
             _repository = repository;
         }
 
-        public void Save(T entity)
-        {
-            _repository.Save(entity);
-            DataContext.SaveChanges();
-        }
+        //public void Save(T entity)
+        //{
+        //    _repository.Save(entity);
+        //    DataContext.SaveChanges();
+        //}
 
         public void Delete(T entity)
         {
@@ -35,9 +35,9 @@ namespace Hermes.Data.Repositories.Decorators
             DataContext.SaveChanges();
         }
 
-        public void Create(T entity)
+        public void Insert(T entity)
         {
-            _repository.Create(entity);
+            _repository.Insert(entity);
             DataContext.SaveChanges();
         }
     }

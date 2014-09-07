@@ -40,7 +40,7 @@ namespace Hermes.Data.Integration.Test
 
             foreach (var item in TestList())
             {
-                repository.Create(item);
+                repository.Insert(item);
             }
 
             factory.DataContext.SaveChanges();
@@ -81,7 +81,7 @@ namespace Hermes.Data.Integration.Test
                 .Take(3)
                 .ToArray();
 
-            var json = @"{
+            const string json = @"{
                 'Filters':[{'FilterProperty':'Number','FilterOperator':'eq','FilterValue':5}],
                 'OrderBys':[{'SortProperty':'Title','SortDirection': 'DESC'}],
                 'Pager':{'PageNumber':2,'NumberPerPage':3}}";

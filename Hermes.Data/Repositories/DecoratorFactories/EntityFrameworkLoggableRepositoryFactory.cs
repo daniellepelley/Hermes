@@ -34,9 +34,9 @@
 //        /// <summary>
 //        /// Creates a repository that instantly persists on Save or Delete
 //        /// </summary>
-//        public IRepository<T> Create<T>() where T : class
+//        public IRepository<T> Insert<T>() where T : class
 //        {
-//            return new EntityFrameworkLoggableRepository<T>((ObjectSetRepository<T>)repositoryFactory.Create<T>());
+//            return new EntityFrameworkLoggableRepository<T>((ObjectSetRepository<T>)repositoryFactory.Insert<T>());
 //        }
 
 //        #endregion

@@ -77,11 +77,11 @@
 //        /// <summary>
 //        /// Creates a new entity of type T in the base data
 //        /// </summary>
-//        public void Create(T entity)
+//        public void Insert(T entity)
 //        {
 //            if (entityRuleProvider.IsValid(entity))
 //            {
-//                repository.Create(entity);
+//                repository.Insert(entity);
 //            }
 //        }
 

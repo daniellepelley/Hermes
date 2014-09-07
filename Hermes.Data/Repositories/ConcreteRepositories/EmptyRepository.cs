@@ -31,7 +31,7 @@ namespace Hermes.Data
         public void Delete(T entity)
         { }
 
-        public void Create(T entity)
+        public void Insert(T entity)
         { }
 
         #endregion

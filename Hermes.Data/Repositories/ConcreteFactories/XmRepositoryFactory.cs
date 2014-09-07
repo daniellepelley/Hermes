@@ -55,7 +55,7 @@
 //        /// <summary>
 //        /// Creates a ObjectSetRepository for type T
 //        /// </summary>
-//        public IRepository<T> Create<T>() where T : class
+//        public IRepository<T> Insert<T>() where T : class
 //        {
 //            if (getFileNameFuncs.ContainsKey(typeof(T)))
 //                return new XmlRepository<T>(directoryPath, (Func<T, string>)getFileNameFuncs[typeof(T)]);

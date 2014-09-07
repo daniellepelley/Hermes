@@ -36,9 +36,9 @@
 //        /// <summary>
 //        /// Creates a repository that logs changes
 //        /// </summary>
-//        public IRepository<T> Create<T>() where T : class
+//        public IRepository<T> Insert<T>() where T : class
 //        {
-//            return new LoggableRepository<T>(repositoryFactory.Create<T>(), loggerFactory.Create<T>());
+//            return new LoggableRepository<T>(repositoryFactory.Insert<T>(), loggerFactory.Insert<T>());
 //        }
 
 //        #endregion

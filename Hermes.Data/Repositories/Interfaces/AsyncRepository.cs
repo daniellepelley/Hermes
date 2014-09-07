@@ -10,7 +10,7 @@ namespace Hermes.Data.Repositories.Interfaces
 
         IObservable<T> Items { get; }
 
-        Task SaveAsync(T entity);
+        //Task SaveAsync(T entity);
 
         Task DeleteAsync(T entity);
 

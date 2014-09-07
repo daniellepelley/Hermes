@@ -47,7 +47,7 @@ namespace Hermes.Data.EntityFramework
             _dataContext.ObjectContext.ObjectStateManager.ChangeObjectState(entity, EntityState.Deleted);
         }
 
-        public void Create(T entity)
+        public void Insert(T entity)
         {
             if (!Contains(entity))
                 _entitySet.AddObject(entity);

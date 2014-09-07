@@ -69,7 +69,7 @@
 //        {
 //            get
 //            {
-//                WebRequest request = WebRequest.Create(requestUrl);
+//                WebRequest request = WebRequest.Insert(requestUrl);
 //                request.Method = "GET";
 //                request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(token));
 
@@ -108,7 +108,7 @@
 //                uriQuery = ((UriQuery)query).UriQueryText;
 //            }
 
-//            WebRequest request = WebRequest.Create(string.Format("{0}{1}", requestUrl, uriQuery));
+//            WebRequest request = WebRequest.Insert(string.Format("{0}{1}", requestUrl, uriQuery));
 //            request.Method = "GET";
 //            request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(token));
 
@@ -136,7 +136,7 @@
 //        /// <summary>
 //        /// Creates a new entity of type T in the base data
 //        /// </summary>
-//        public void Create(T entity)
+//        public void Insert(T entity)
 //        {
 //        }
 

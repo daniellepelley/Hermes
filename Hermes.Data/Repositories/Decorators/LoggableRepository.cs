@@ -53,10 +53,10 @@
 //        /// <summary>
 //        /// Creates a new entity of type T in the base data
 //        /// </summary>
-//        public override void Create(T entity)
+//        public override void Insert(T entity)
 //        {
 //            logger.Log(entity);
-//            repository.Create(entity);
+//            repository.Insert(entity);
 //        }
 
 //        #endregion

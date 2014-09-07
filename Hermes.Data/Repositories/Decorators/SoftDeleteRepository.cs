@@ -33,20 +33,20 @@ namespace Hermes.Data.Repositories.Decorators
             _markAsDeleted = markAsDeleted;
         }
 
-        public void Save(T entity)
-        {
-            _repository.Save(entity);
-        }
+        //public void Save(T entity)
+        //{
+        //    _repository.Save(entity);
+        //}
 
         public void Delete(T entity)
         {
             _markAsDeleted.Compile().Invoke(entity);
-            _repository.Save(entity);
+            //_repository.Save(entity);
         }
 
-        public void Create(T entity)
+        public void Insert(T entity)
         {
-            _repository.Create(entity);
+            _repository.Insert(entity);
         }
     }
 }

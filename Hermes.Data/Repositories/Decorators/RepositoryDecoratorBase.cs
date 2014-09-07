@@ -26,19 +26,19 @@ namespace Hermes.Data.Repositories.Decorators
             this.Repository = repository;
         }
 
-        public virtual void Save(T entity)
-        {
-            Repository.Save(entity);
-        }
+        //public virtual void Save(T entity)
+        //{
+        //    Repository.Save(entity);
+        //}
 
         public virtual void Delete(T entity)
         {
             Repository.Delete(entity);
         }
 
-        public virtual void Create(T entity)
+        public virtual void Insert(T entity)
         {
-            Repository.Create(entity);
+            Repository.Insert(entity);
         }
     }
 }

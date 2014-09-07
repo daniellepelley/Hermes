@@ -36,9 +36,9 @@
 //        /// <summary>
 //        /// Creates a repository that provides security
 //        /// </summary>
-//        public IRepository<T> Create<T>() where T : class
+//        public IRepository<T> Insert<T>() where T : class
 //        {
-//            return new SecureRepository<T>(repositoryFactory.Create<T>(), dataSecurityProvider);
+//            return new SecureRepository<T>(repositoryFactory.Insert<T>(), dataSecurityProvider);
 //        }
 
 //        #endregion

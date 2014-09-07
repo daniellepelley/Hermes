@@ -132,7 +132,7 @@
 //        /// <summary>
 //        /// Creates a new entity of type T in the base data
 //        /// </summary>
-//        public void Create(T entity)
+//        public void Insert(T entity)
 //        {
 //            string xml = serializer.SerializeObject(entity);
 //            string fileName = getFileName(entity);

@@ -40,7 +40,7 @@ namespace Hermes.Data.LinqToSql
             _dataContext.DataContext.GetTable<T>().DeleteOnSubmit(entity);
         }
 
-        public void Create(T entity)
+        public void Insert(T entity)
         {
             _dataContext.DataContext.GetTable<T>().InsertOnSubmit(entity);
         }
