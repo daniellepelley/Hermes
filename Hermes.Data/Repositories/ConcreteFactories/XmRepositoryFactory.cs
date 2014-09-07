@@ -53,7 +53,7 @@
 //        #region Methods
 
 //        /// <summary>
-//        /// Creates a EntityFrameworkRepository for type T
+//        /// Creates a ObjectSetRepository for type T
 //        /// </summary>
 //        public IRepository<T> Create<T>() where T : class
 //        {

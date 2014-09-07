@@ -3,6 +3,7 @@ using System.Linq;
 using Hermes.Data.Operation;
 using Hermes.Data.Test;
 using NUnit.Framework;
+using Hermes.Data.EntityFramework;
 
 namespace Hermes.Data.Integration.Test
 {
@@ -29,10 +30,20 @@ namespace Hermes.Data.Integration.Test
         [TestFixtureSetUp]
         public void SetUpDatabase()
         {
-            var entities = new TestDatabaseEntities();
-            entities.Database.ExecuteSqlCommand("TRUNCATE TABLE TestClass");
-            entities.TestClasses.AddRange(TestList());
-            entities.SaveChanges();
+            var dataContext = new DbDataContext(new TestDatabaseEntities());
+
+            dataContext.DbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE TestClass");
+
+            var factory = new DbSetRepositoryFactory(dataContext);
+
+            var repository = factory.Create<TestClass>();
+
+            foreach (var item in TestList())
+            {
+                repository.Create(item);
+            }
+
+            factory.DataContext.SaveChanges();
         }
 
         [Test]
@@ -89,8 +100,8 @@ namespace Hermes.Data.Integration.Test
 
         public TestClass[] GetData(DataOperator dataOperator)
         {
-            var entities = new TestDatabaseEntities();
-            return entities.TestClasses.GetData(dataOperator).ToArray();
+            var repository = new DbSetRepository<TestClass>(new TestDatabaseEntities());
+            return repository.Items.GetData(dataOperator).ToArray();
         }
     }
 }

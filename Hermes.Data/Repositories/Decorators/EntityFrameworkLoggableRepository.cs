@@ -13,7 +13,7 @@
 //    {
 //        #region Properties
 
-//        private EntityFrameworkRepository<T> repository;
+//        private ObjectSetRepository<T> repository;
 
 //        private EntityFrameworkChangeLogger logger;
 
@@ -40,10 +40,10 @@
 //        /// <summary>
 //        /// A decorator around a repository which injects logging
 //        /// </summary>
-//        public EntityFrameworkLoggableRepository(EntityFrameworkRepository<T> repository)
+//        public EntityFrameworkLoggableRepository(ObjectSetRepository<T> repository)
 //        {
 //            this.repository = repository;
-//            this.logger = new EntityFrameworkChangeLogger(((EntityFrameworkDataContext)this.repository.DataContext).ObjectContext);
+//            this.logger = new EntityFrameworkChangeLogger(((ObjectDataContext)this.repository.DataContext).DbContext);
 //        }
 
 //        #endregion

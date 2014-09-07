@@ -22,7 +22,7 @@
 //        /// <summary>
 //        /// A factory that creates a decorator around a repository that instantly persists on Save or Delete
 //        /// </summary>
-//        public EntityFrameworkLoggableRepositoryFactory(EntityFrameworkRepositoryFactory repositoryFactory)
+//        public EntityFrameworkLoggableRepositoryFactory(ObjectSetRepositoryFactory repositoryFactory)
 //        {
 //            this.repositoryFactory = repositoryFactory;
 //        }
@@ -36,7 +36,7 @@
 //        /// </summary>
 //        public IRepository<T> Create<T>() where T : class
 //        {
-//            return new EntityFrameworkLoggableRepository<T>((EntityFrameworkRepository<T>)repositoryFactory.Create<T>());
+//            return new EntityFrameworkLoggableRepository<T>((ObjectSetRepository<T>)repositoryFactory.Create<T>());
 //        }
 
 //        #endregion

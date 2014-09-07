@@ -1,10 +1,10 @@
-﻿using System.Data.Objects;
+﻿using System.Data.Entity.Core.Objects;
 using System.Linq;
 using Hermes.Data.Repositories.Interfaces;
 
 namespace Hermes.Data.EntityFramework
 {
-    public class EntityFrameworkDataContext : IDataContext
+    public class ObjectDataContext : IDataContext
     {
         private ObjectContext _objectContext;
 
@@ -14,7 +14,7 @@ namespace Hermes.Data.EntityFramework
             set { _objectContext = value; }
         }
 
-        public EntityFrameworkDataContext(ObjectContext objectContext)
+        public ObjectDataContext(ObjectContext objectContext)
         {
             _objectContext = objectContext;
         }
@@ -22,9 +22,9 @@ namespace Hermes.Data.EntityFramework
         public bool AreChanges()
         {
             return
-                _objectContext.ObjectStateManager.GetObjectStateEntries(System.Data.EntityState.Added).Any() ||
-                _objectContext.ObjectStateManager.GetObjectStateEntries(System.Data.EntityState.Deleted).Any() ||
-                _objectContext.ObjectStateManager.GetObjectStateEntries(System.Data.EntityState.Modified).Any();
+                _objectContext.ObjectStateManager.GetObjectStateEntries(System.Data.Entity.EntityState.Added).Any() ||
+                _objectContext.ObjectStateManager.GetObjectStateEntries(System.Data.Entity.EntityState.Deleted).Any() ||
+                _objectContext.ObjectStateManager.GetObjectStateEntries(System.Data.Entity.EntityState.Modified).Any();
         }
 
         public void SaveChanges()

@@ -1,10 +1,9 @@
-﻿using System.Data.Common;
-using System.Data.Objects;
+﻿using System.Data.Entity.Core.Objects;
 using Hermes.Data.Repositories.Interfaces;
 
 namespace Hermes.Data.EntityFramework
 {
-    public class EntityFrameworkRepositoryFactory : IRepositoryFactory
+    public class ObjectSetRepositoryFactory : IRepositoryFactory
     {
         private ObjectContext _objectContext;
 
@@ -14,19 +13,19 @@ namespace Hermes.Data.EntityFramework
             set { _objectContext = value; }
         }
 
-        public EntityFrameworkRepositoryFactory(ObjectContext objectContext)
+        public ObjectSetRepositoryFactory(ObjectContext objectContext)
         {
             _objectContext = objectContext;
         }
 
-        public EntityFrameworkRepositoryFactory(string connectionString)
+        public ObjectSetRepositoryFactory(string connectionString)
         {
             _objectContext = new ObjectContext(connectionString);
         }
 
         public IRepository<T> Create<T>() where T : class
         {
-            return new EntityFrameworkRepository<T>(_objectContext);
+            return new ObjectSetRepository<T>(_objectContext);
         }
     }
 }
