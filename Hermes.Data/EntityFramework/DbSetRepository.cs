@@ -57,12 +57,12 @@ namespace Hermes.Data.EntityFramework
             ((IObjectContextAdapter)_dataContext.DbContext).ObjectContext.ObjectStateManager.ChangeObjectState(entity, EntityState.Added);
         }
 
-        public IQueryable<T> Query(IQuery query)
-        {
-            if (query is PredicateQuery<T>)
-                return _entitySet.Where(((PredicateQuery<T>) query).Predicate).AsQueryable();
-            return null;
-        }
+        //public IQueryable<T> Query(IQuery query)
+        //{
+        //    if (query is PredicateQuery<T>)
+        //        return _entitySet.Where(((PredicateQuery<T>) query).Predicate).AsQueryable();
+        //    return null;
+        //}
 
         public bool Contains(T item)
         {

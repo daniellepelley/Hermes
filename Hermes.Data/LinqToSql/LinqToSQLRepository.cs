@@ -19,7 +19,7 @@ namespace Hermes.Data.LinqToSql
             get { return _dataContext.DataContext.GetTable<T>().AsQueryable(); }
         }
 
-        public LinqToSqlRepository(System.Data.Linq.DataContext dataContext)
+        public LinqToSqlRepository(DataContext dataContext)
             : this(new LinqToSqlDataContext(dataContext))
         {
         }
@@ -43,13 +43,6 @@ namespace Hermes.Data.LinqToSql
         public void Insert(T entity)
         {
             _dataContext.DataContext.GetTable<T>().InsertOnSubmit(entity);
-        }
-
-        public IQueryable<T> Query(IQuery query)
-        {
-            if (query is PredicateQuery<T>)
-                return _dataContext.DataContext.GetTable<T>().Where(((PredicateQuery<T>) query).Predicate).AsQueryable();
-            return null;
         }
     }
 }

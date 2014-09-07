@@ -23,13 +23,8 @@ namespace Hermes.Data.Repositories.Decorators
 
         public RepositoryDecoratorBase(IRepository<T> repository)
         {
-            this.Repository = repository;
+            Repository = repository;
         }
-
-        //public virtual void Save(T entity)
-        //{
-        //    Repository.Save(entity);
-        //}
 
         public virtual void Delete(T entity)
         {
