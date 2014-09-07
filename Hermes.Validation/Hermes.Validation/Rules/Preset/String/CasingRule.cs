@@ -2,12 +2,6 @@
 
 namespace Hermes.Validation.Rules.Preset.String
 {
-    //To be replaced with forms version.
-    public enum CasingType { Normal, Lower, Upper };
-
-    /// <summary>
-    /// A rule which sets the casing type for a string.
-    /// </summary>
     public class CasingRule
         : Rule<string>,
         IEnforcable<string>

@@ -48,6 +48,7 @@
     <Compile Include="Rules\ComparisonRuleBase.cs" />
     <Compile Include="Rules\EntityRuleProvider.cs" />
     <Compile Include="Rules\FieldRules.cs" />
+    <Compile Include="Rules\Preset\String\CasingType.cs" />
     <Compile Include="Rules\Preset\String\ContainsRule.cs" />
     <Compile Include="Rules\Preset\String\MaximumLengthRule.cs" />
     <Compile Include="Rules\Preset\Numeric\MaximumRule.cs" />
