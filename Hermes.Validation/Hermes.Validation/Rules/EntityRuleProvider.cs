@@ -30,6 +30,12 @@ namespace Hermes.Validation.Rules
 
         public void AddRule<TFieldType>(string fieldName, IRule<TFieldType> rule)
         {
+            if (string.IsNullOrEmpty(fieldName))
+            {
+                EntityRules.Add(rule);
+                return;
+            }
+
             FieldRules<TEntity, TFieldType> fieldRule;
 
             if (!PropertyRules.ContainsKey(fieldName))
