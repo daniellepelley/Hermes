@@ -1,7 +1,7 @@
 ﻿using Hermes.Data.EntityFramework;
 using NUnit.Framework;
 
-namespace Hermes.Data.Integration.Test
+namespace Hermes.Data.Integration.Test.EntityFramework
 {
     public class DbSetRepositoryTest
     {

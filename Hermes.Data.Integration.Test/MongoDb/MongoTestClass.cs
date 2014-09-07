@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hermes.Data.Integration.Test
+namespace Hermes.Data.Integration.Test.MongoDb
 {
     public class MongoTestClass
     {

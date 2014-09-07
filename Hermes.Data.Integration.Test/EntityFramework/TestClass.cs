@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hermes.Data.Integration.Test
+namespace Hermes.Data.Integration.Test.EntityFramework
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Hermes.Data.Integration.Test
 
         public override bool Equals(object obj)
         {
-            var other = (TestClass) obj;
+            var other = (TestClass)obj;
 
             return other.Number == Number &&
                    other.Title == Title;

@@ -1,49 +1,56 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Hermes.Data.Integration.Test.MongoDb;
+using Hermes.Data.MongoDb;
 using Hermes.Data.Operation;
+using Hermes.Data.Repositories.Interfaces;
 using Hermes.Data.Test;
+using MongoDB.Driver;
 using NUnit.Framework;
 using Hermes.Data.EntityFramework;
 
 namespace Hermes.Data.Integration.Test
 {
     [TestFixture]
-    public class DataOperatorWithEntityFramework
+    public class DataOperatorWithMongoDb
     {
-        public IEnumerable<TestClass> TestList()
+        private IRepository<MongoTestClass> _repository;
+
+        public IEnumerable<MongoTestClass> TestList()
         {
             return new[]
             {
-                new TestClass {Title = "One", Number = 1},
-                new TestClass {Title = "Two", Number = 2},
-                new TestClass {Title = "Three", Number = 3},
-                new TestClass {Title = "Four", Number = 4},
-                new TestClass {Title = "Five", Number = 5},
-                new TestClass {Title = "Six", Number = 6},
-                new TestClass {Title = "Seven", Number = 7},
-                new TestClass {Title = "Eight", Number = 8},
-                new TestClass {Title = "Nine", Number = 9},
-                new TestClass {Title = "Ten", Number = 10}
+                new MongoTestClass {Title = "One", Number = 1},
+                new MongoTestClass {Title = "Two", Number = 2},
+                new MongoTestClass {Title = "Three", Number = 3},
+                new MongoTestClass {Title = "Four", Number = 4},
+                new MongoTestClass {Title = "Five", Number = 5},
+                new MongoTestClass {Title = "Six", Number = 6},
+                new MongoTestClass {Title = "Seven", Number = 7},
+                new MongoTestClass {Title = "Eight", Number = 8},
+                new MongoTestClass {Title = "Nine", Number = 9},
+                new MongoTestClass {Title = "Ten", Number = 10}
             };
         }
               
         [TestFixtureSetUp]
         public void SetUpDatabase()
         {
-            var dataContext = new DbDataContext(new TestDatabaseEntities());
+            var connectionString = "mongodb://user:password@ds035750.mongolab.com:35750/test";
+            var client = new MongoClient(connectionString);
+            var server = client.GetServer();
+            var database = server.GetDatabase("test");
 
-            dataContext.DbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE TestClass");
+            database.GetCollection<MongoTestClass>("MongoTestClass").Drop();
 
-            var factory = new DbSetRepositoryFactory(dataContext);
+            var factory = new MongoDbRepositoryFactory(database);
 
-            var repository = factory.Create<TestClass>();
+            _repository = factory.Create<MongoTestClass>();
 
             foreach (var item in TestList())
             {
-                repository.Insert(item);
+                _repository.Insert(item);
             }
-
-            factory.DataContext.SaveChanges();
         }
 
         [Test]
@@ -91,17 +98,16 @@ namespace Hermes.Data.Integration.Test
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        public TestClass[] GetData(string json)
+        public MongoTestClass[] GetData(string json)
         {
             var dataOperator = Newtonsoft.Json.JsonConvert.DeserializeObject<DataOperator>(json);
             
             return GetData(dataOperator);
         }
 
-        public TestClass[] GetData(DataOperator dataOperator)
+        public MongoTestClass[] GetData(DataOperator dataOperator)
         {
-            var repository = new DbSetRepository<TestClass>(new TestDatabaseEntities());
-            return repository.Items.GetData(dataOperator).ToArray();
+            return _repository.Items.GetData(dataOperator).ToArray();
         }
     }
 }

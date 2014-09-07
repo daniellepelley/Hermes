@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hermes.Data.Integration.Test
+namespace Hermes.Data.Integration.Test.EntityFramework
 {
     using System;
     using System.Data.Entity;

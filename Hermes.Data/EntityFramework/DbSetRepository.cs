@@ -53,7 +53,7 @@ namespace Hermes.Data.EntityFramework
         {
             if (!Contains(entity))
                 _entitySet.Add(entity);
-
+            
             ((IObjectContextAdapter)_dataContext.DbContext).ObjectContext.ObjectStateManager.ChangeObjectState(entity, EntityState.Added);
         }
 
