@@ -58,16 +58,16 @@ namespace Hermes.Data.Integration.Test
             var list = TestList().ToArray();
             
             var expected = list
-                //.Where(x => x.Number > 5)
-                //.OrderBy(x => x.Title)
-                //.Skip(3)
-                //.Take(3)
+                .Where(x => x.Number > 5)
+                .OrderBy(x => x.Title)
+                .Skip(3)
+                .Take(3)
                 .ToArray();
 
             var dataOperator = new DataOperatorBuilder()
-                //.AddFilter("Number", "gr", 5)
-                //.AddOrderBy("Title")
-                //.Paging(3, 2)
+                .AddFilter("Number", "gr", 5)
+                .AddOrderBy("Title")
+                .Paging(3, 2)
                 .Build();
 
             var actual = GetData(dataOperator).ToArray();
