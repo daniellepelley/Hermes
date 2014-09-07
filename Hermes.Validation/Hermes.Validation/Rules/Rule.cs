@@ -5,9 +5,8 @@ namespace Hermes.Validation.Rules
 {
     public abstract class Rule<T> : IRule<T>, IComparable
     {
-        #region Parameters
-
         private Func<T, string> _logic;
+        private readonly string _message;
 
         public Func<T, string> Logic
         {
@@ -15,40 +14,22 @@ namespace Hermes.Validation.Rules
             get { return _logic; }
         }
 
-        #endregion
-
-        #region Constructors
-
-        public Rule()
+        protected Rule()
         {
             _logic = t => string.Empty;
         }
 
-        public Rule(Func<T, string> logic)
-            : this()
-        {
-            _logic = logic;
-        }
-
-        //public Rule(Func<T, string> logic, Func<T, T> enforcer)
+        //protected Rule(Func<T, string> logic)
         //    : this()
         //{
-        //    _logic = logic;
+
         //}
 
-        #endregion
-
-        #region Methods
-
-        //protected virtual string LogicMethod(T value)
-        //{
-        //    //Make sure it doesn't call itself
-        //    if (_logic == LogicMethod)
-        //        return string.Empty;
-        //    return _logic(value);
-        //}
-
-        #endregion
+        protected Rule(string message, Func<T, string> logic)
+        {
+            _message = message;
+            _logic = logic;
+        }
 
         public string Check(T value)
         {
@@ -64,7 +45,10 @@ namespace Hermes.Validation.Rules
             return Check(value) == string.Empty;
         }
 
-        public abstract string Message { get; }
+        public virtual string Message
+        {
+            get { return _message; }
+        }
 
         public virtual int CompareTo(object obj)
         {

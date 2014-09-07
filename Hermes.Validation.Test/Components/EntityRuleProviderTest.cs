@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Hermes.Validation.Interfaces;
 using Hermes.Validation.Rules;
 using Hermes.Validation.Rules.Preset.String;
 using NUnit.Framework;
@@ -14,7 +15,7 @@ namespace Hermes.Validation.Test.Components
             sut.AddRules(x => x.Value, 
                 new MaximumLengthRule(5),
                 new MinimumLengthRule(4));
-
+                        
             return sut;
         }
 
@@ -83,6 +84,17 @@ namespace Hermes.Validation.Test.Components
             var actual = sut.Clean(testClass);
 
             Assert.AreEqual("12345", actual.Value);
+        }
+
+        [Test]
+        public void CanAddEntityRule()
+        {
+            var sut = CreateSut();
+
+            sut.AddRule(string.Empty, new CustomRule<TestClass>(
+                x => x.Value != "invalid" ? string.Empty : "Must not equal invalid", string.Empty));
+
+            Assert.AreEqual(1, sut.EntityRules.Rules.Count);
         }
 
     }
