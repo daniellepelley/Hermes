@@ -43,7 +43,7 @@
 //        public EntityFrameworkLoggableRepository(ObjectSetRepository<T> repository)
 //        {
 //            this.repository = repository;
-//            this.logger = new EntityFrameworkChangeLogger(((ObjectDataContext)this.repository.DataContext).DbContext);
+//            this.logger = new EntityFrameworkChangeLogger(((ObjectDataContext)this.repository.DataContext).MongoDatabase);
 //        }
 
 //        #endregion

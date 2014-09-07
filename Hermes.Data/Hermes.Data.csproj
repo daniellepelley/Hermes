@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\Hermes.Validation\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\Hermes.Validation\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\Hermes.Validation\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -62,6 +68,9 @@
     <Compile Include="EntityFramework\DbSetRepository.cs" />
     <Compile Include="EntityFramework\DbDataContext.cs" />
     <Compile Include="EntityFramework\DbSetRepositoryFactory.cs" />
+    <Compile Include="MongoDb\MongoDbDataContext.cs" />
+    <Compile Include="MongoDb\MongoDbRepository.cs" />
+    <Compile Include="MongoDb\MongoDbRepositoryFactory.cs" />
     <Compile Include="Operation\Filter.cs" />
     <Compile Include="Operation\DataOperations.cs" />
     <Compile Include="Operation\DataOperator.cs" />

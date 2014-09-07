@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using Hermes.Data.EntityFramework;
-using Hermes.Data.Repositories.Interfaces;
+﻿using Hermes.Data.EntityFramework;
 using NUnit.Framework;
 
 namespace Hermes.Data.Integration.Test
@@ -36,56 +33,15 @@ namespace Hermes.Data.Integration.Test
         [Test]
         public void Insert()
         {
-            _tester.VerifyInsert();
+            var repository = _tester.SetUpRepository();
+            _tester.VerifyInsert(repository);
         }
 
         [Test]
         public void Delete()
         {
-            _tester.VerifyDelete();
+            var repository = _tester.SetUpRepository();
+            _tester.VerifyDelete(repository);
         }
-    }
-
-    public class RepositoryTester<T>
-        where T : class
-    {
-        public Func<T> CreateEntity { get; set; }
-
-        public Func<IRepository<T>> SetUpRepository { get; set; } 
-
-        public void VerifyInsert()
-        {
-            var repository = SetUpRepository();
-
-            var newTestClass = CreateEntity();
-
-            Assert.AreEqual(0, repository.Items.Count());
-
-            repository.Insert(newTestClass);
-            repository.DataContext.SaveChanges();
-
-            Assert.AreEqual(1, repository.Items.Count());
-
-            var actual = repository.Items.FirstOrDefault();
-            Assert.AreEqual(newTestClass, actual);
-        }
-
-        public void VerifyDelete()
-        {
-            var repository = SetUpRepository();
-
-            var newTestClass = CreateEntity();
-
-            repository.Insert(newTestClass);
-            repository.DataContext.SaveChanges();
-
-            Assert.AreEqual(1, repository.Items.Count());
-
-            repository.Delete(repository.Items.FirstOrDefault());
-            repository.DataContext.SaveChanges();
-
-            Assert.AreEqual(0, repository.Items.Count());
-        }
-
     }
 }
