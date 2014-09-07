@@ -97,5 +97,34 @@ namespace Hermes.Validation.Test.Components
             Assert.AreEqual(1, sut.EntityRules.Rules.Count);
         }
 
+        [Test]
+        public void WhenEntityRuleIsValid()
+        {
+            var sut = CreateSut();
+
+            sut.AddRule(string.Empty, new CustomRule<TestClass>(
+                x => x.Value != "invalid" ? string.Empty : "Must not equal invalid", string.Empty));
+
+            var testClass = new TestClass { Value = "valid" };
+
+            var actual = sut.Validate(testClass);
+
+            Assert.IsTrue(!actual["Value"].Any());
+        }
+
+        [Test]
+        public void WhenEntityRuleIsInValid()
+        {
+            var sut = CreateSut();
+
+            sut.AddRule(string.Empty, new CustomRule<TestClass>(
+                x => x.Value != "invalid" ? string.Empty : "Must not equal invalid", string.Empty));
+
+            var testClass = new TestClass { Value = "invalid" };
+
+            var actual = sut.Validate(testClass);
+
+            Assert.IsTrue(actual["Value"].Any());
+        }
     }
 }
