@@ -1,7 +1,104 @@
-﻿
+﻿<script src="~/Scripts/Form/app.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
 @{
     ViewBag.Title = "Form";
 }
 
-<h2>Form</h2>
+<br/>
+<br/>
+<br/>
+<div class="panel panel-default">
+    <div class="panel-header bg-lightBlue fg-white">
+        Form
+    </div>
+    <div class="panel-body" ng-app="formApp">
+        <div ng-controller="formController">
+
+            <div class="well well-sm">
+                <span>{{title}} {{firstname}} {{surname}}</span>
+                <br />
+                <span>Age: {{age}}</span>
+            </div>
+
+            <form role="form" name="form" novalidate>
+                <fieldset>
+
+
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <div class="input-control text" data-role="input-control">
+                            <input type="text" ng-model="title" name="title" maxlength="4" required placeholder="Title" />
+                            <span class="text-danger" ng-show="form.title.$error.required">Required</span>
+                            <span class="text-danger" ng-show="form.title.$error.maxlength">Maximum of 4 characters</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Firstname:</label>
+                        <div class="input-control text" data-role="input-control">
+                            <input type="text" ng-model="firstname" name="firstname" maxlength="30" required placeholder="Firstname" />
+                            <span class="text-danger" ng-show="form.firstname.$error.required">Required</span>
+                            <span class="text-danger" ng-show="form.firstname.$error.maxlength">Maximum of 30 characters</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Surname:</label>
+                        <div class="input-control text" data-role="input-control">
+                            <input type="text" ng-model="surname" name="surname" maxlength="30" required placeholder="Surname" />
+                            <span class="text-danger" ng-show="form.surname.$error.required">Required</span>
+                            <span class="text-danger" ng-show="form.surname.$error.maxlength">Maximum of 30 characters</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Age:</label>
+                        <div class="input-control number" data-role="input-control">
+                            <input type="number" ng-model="age" name="age" min="0" max="100" required placeholder="Age" />
+                            <span class="text-danger" ng-show="form.age.$error.required">Required</span>
+                            <span class="text-danger" ng-show="form.age.$error.min || form.age.$error.max">
+                                The value must be in range 0 to 100!
+                            </span>
+                        </div>
+                    </div>
+
+                    <button ng-disabled="form.$invalid" type="submit" class="btn btn-default btn-lg right">Submit</button>
+
+                </fieldset>
+            </form>
+
+        </div>
+
+
+        <div ng-controller="exchangeController">
+            <div class="tile bg-darkViolet">
+                <div class="tile-content icon">
+                    <i class="icon-cart-2"></i>
+                </div>
+                <div class="tile-status">
+                    <span class="name">{{rate}}</span>
+                    <div class="badge bg-red">{{count}}</div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

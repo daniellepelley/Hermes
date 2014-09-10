@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Carousel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Carousel</h2>
+
+<span class="glyphicon glyphicon-chevron-down"></span>
+
+
+
+
+<div class="span5">
+    <div class="carousel" id="carousel1" data-role="carousel" style="width: 600px; height: 375px;">
+        <div class="slide">
+            <img src="http://metroui.org.ua/images/1.jpg" class="cover1">
+        </div>
+
+        <div class="slide">
+            <img src="http://metroui.org.ua/images/2.jpg" class="cover1">
+        </div>
+
+        <div class="slide">
+            <img src="http://metroui.org.ua/images/3.jpg" class="cover1">
+        </div>
+
+        <a class="controls left"><i class="icon-arrow-left-3"></i></a>
+        <a class="controls right"><i class="icon-arrow-right-3"></i></a>
+        <div class="markers default"><ul><li class=""><a href="javascript:void(0)" data-num="0"></a></li><li class="active"><a href="javascript:void(0)" data-num="1"></a></li><li class=""><a href="javascript:void(0)" data-num="2"></a></li></ul></div>
+    </div>
+    <script>
+        $(function () {
+            $("#carousel1").carousel({
+                height: 375
+            });
+        })
+    </script>
+</div>
