@@ -14,6 +14,6 @@ namespace Hermes.Data.Repositories.Interfaces
 
         Task DeleteAsync(T entity);
 
-        Task CreateAsync(T entity);
+        Task InsertAsync(T entity);
     }
 }

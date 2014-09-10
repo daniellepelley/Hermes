@@ -45,6 +45,10 @@ namespace Hermes.Data.Test.Helpers
             };
         }
 
+        public static TestClass CreateNew()
+        {
+            return new TestClass {Title = "Eleven", Number = 11};
+        }
     } 
 
 }
