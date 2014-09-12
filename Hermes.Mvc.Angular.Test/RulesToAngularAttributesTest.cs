@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Hermes.Validation.Interfaces;
 using Hermes.Validation.Rules.Preset.Numeric;
 using Hermes.Validation.Rules.Preset.String;
-using NUnit;
 using NUnit.Framework;
 
 namespace Hermes.Mvc.Angular.Test
 {
-    
     public class RulesToAngularAttributesTest
     {
         [Test]
