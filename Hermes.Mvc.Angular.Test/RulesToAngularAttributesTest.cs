@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Hermes.Validation.Interfaces;
 using Hermes.Validation.Rules.Preset.Numeric;
 using Hermes.Validation.Rules.Preset.String;
@@ -99,5 +100,29 @@ namespace Hermes.Mvc.Angular.Test
 
             CollectionAssert.AreEquivalent(dictionary,actual);
         }
+
+        [Test]
+        public void AddsAttributesToTag()
+        {
+            var rules = new IRule[]
+            {
+                new MinimumRule(6),
+                new MaximumRule(7),
+                new MaximumLengthRule(5),
+            };
+
+            var tagBuilder = new TagBuilder("div");
+
+            var sut = new RulesToAttributeConverter();
+
+            var expected = @"<div max=""7"" maxlength=""5"" min=""6"">";
+
+            sut.SetUpTag(tagBuilder, rules);
+
+            var actual = tagBuilder.ToString(TagRenderMode.StartTag);
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

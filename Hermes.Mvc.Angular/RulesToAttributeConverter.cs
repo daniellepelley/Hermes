@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Web.Mvc;
 using Hermes.Validation.Interfaces;
 using Hermes.Validation.Rules.Preset.Numeric;
 using Hermes.Validation.Rules.Preset.String;
@@ -48,6 +49,16 @@ namespace Hermes.Mvc.Angular
             }
 
             return new string[0];
+        }
+
+        public void SetUpTag(TagBuilder tagBuilder, IEnumerable<IRule> rules)
+        {
+            var converter = new RulesToAttributeConverter();
+
+            foreach (var rule in converter.CreateAttributes(rules))
+            {
+                tagBuilder.MergeAttribute(rule.Key, rule.Value);
+            }
         }
     }
 }
