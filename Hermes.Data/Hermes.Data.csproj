@@ -54,6 +54,8 @@
     <Compile Include="EntityFramework\DbSetRepository.cs" />
     <Compile Include="EntityFramework\DbDataContext.cs" />
     <Compile Include="EntityFramework\DbSetRepositoryFactory.cs" />
+    <Compile Include="InMemory\InMemoryDataContext.cs" />
+    <Compile Include="InMemory\InMemoryRepository.cs" />
     <Compile Include="MongoDb\MongoDbDataContext.cs" />
     <Compile Include="MongoDb\MongoDbRepository.cs" />
     <Compile Include="MongoDb\MongoDbRepositoryFactory.cs" />

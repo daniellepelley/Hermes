@@ -85,6 +85,7 @@
     <Compile Include="DataOperation\DataOperatorWithEntityFramework.cs" />
     <Compile Include="DataOperation\DataOperatorWithMongoDb.cs" />
     <Compile Include="EntityFramework\DbSetRepositoryTest.cs" />
+    <Compile Include="InMemory\MongoTest.cs" />
     <Compile Include="MongoDb\MongoTest.cs" />
     <Compile Include="MongoDb\MongoTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
