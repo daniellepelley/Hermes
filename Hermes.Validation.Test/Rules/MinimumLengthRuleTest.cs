@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Hermes.Validation.Rules;
 using Hermes.Validation.Rules.Preset.String;
 using NUnit.Framework;
 

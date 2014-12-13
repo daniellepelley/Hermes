@@ -9,6 +9,5 @@
     : IRule
     {
         string Check(T value);
-        bool CheckValid(T value);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hermes.Validation.Rules;
 using NUnit.Framework;
 
 namespace Hermes.Validation.Test.Rules

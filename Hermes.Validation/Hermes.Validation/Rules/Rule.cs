@@ -34,11 +34,6 @@ namespace Hermes.Validation.Rules
             return string.Empty;
         }
 
-        public bool CheckValid(T value)
-        {
-            return Check(value) == string.Empty;
-        }
-
         public virtual string Message
         {
             get { return _message; }
@@ -48,5 +43,14 @@ namespace Hermes.Validation.Rules
         {
             return 0;
         }
+    }
+
+    public static class Extensions
+    {
+        public static bool CheckValid<T>(this Rule<T> rule, T value)
+        {
+            return rule.Check(value) == string.Empty;
+        }
+   
     }
 }
