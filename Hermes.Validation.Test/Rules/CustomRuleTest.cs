@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hermes.Validation.Interfaces;
 using Hermes.Validation.Rules;
-using Hermes.Validation.Rules.Preset.String;
 using NUnit.Framework;
 
 namespace Hermes.Validation.Test.Rules

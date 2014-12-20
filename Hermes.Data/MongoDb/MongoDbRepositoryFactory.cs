@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-using Hermes.Data.EntityFramework;
-using Hermes.Data.Repositories.Interfaces;
+﻿using Hermes.Data.Repositories.Interfaces;
 using MongoDB.Driver;
 
 namespace Hermes.Data.MongoDb

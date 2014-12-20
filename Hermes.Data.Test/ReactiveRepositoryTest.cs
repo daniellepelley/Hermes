@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hermes.Data.Repositories.Interfaces;
 using Hermes.Data.Repositories.Reactive;
 using Hermes.Data.Test.Helpers;

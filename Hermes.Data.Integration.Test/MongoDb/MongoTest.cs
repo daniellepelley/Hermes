@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hermes.Data.Integration.Test.MongoDb;
+﻿using Hermes.Data.Integration.Test.MongoDb;
 using Hermes.Data.MongoDb;
 using MongoDB.Driver;
 using NUnit.Framework;

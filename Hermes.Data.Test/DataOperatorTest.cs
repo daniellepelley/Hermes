@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using Hermes.Data;
 using Hermes.Data.Operation;
 using Hermes.Data.Test.Helpers;
 using NUnit.Framework;
-using Hermes.Data;
 
 namespace Hermes.Data.Test
 {

@@ -7,7 +7,6 @@ using Hermes.Data.Repositories.Interfaces;
 using Hermes.Data.Test;
 using MongoDB.Driver;
 using NUnit.Framework;
-using Hermes.Data.EntityFramework;
 
 namespace Hermes.Data.Integration.Test
 {

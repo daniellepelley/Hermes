@@ -3,7 +3,7 @@
 
 app.controller('formController', function($scope) {
     $scope.title = "";
-    $scope.firstname = "Daniel";
+    $scope.firstname = "Daniel Luke This name is plainly too long";
     $scope.surname = "Le Pelley";
     $scope.age = 38;
 });

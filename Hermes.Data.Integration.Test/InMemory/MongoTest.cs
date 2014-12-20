@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hermes.Data.InMemory;
+﻿using Hermes.Data.InMemory;
 using Hermes.Data.Integration.Test.MongoDb;
-using Hermes.Data.MongoDb;
-using Hermes.Data.Repositories.Interfaces;
-using MongoDB.Driver;
 using NUnit.Framework;
 
 namespace Hermes.Data.Integration.Test

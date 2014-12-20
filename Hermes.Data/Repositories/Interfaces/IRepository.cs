@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Hermes.Data.Repositories.Interfaces
+﻿namespace Hermes.Data.Repositories.Interfaces
 {
     public interface IRepository<T>
         : IReadOnlyRepository<T>

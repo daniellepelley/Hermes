@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using Hermes.Validation.Interfaces;
 using Hermes.Validation.Rules;
 using Hermes.Validation.Rules.Preset.String;
+using Hermes.Validation.Test.Helpers;
 using NUnit.Framework;
 
 namespace Hermes.Validation.Test.Components

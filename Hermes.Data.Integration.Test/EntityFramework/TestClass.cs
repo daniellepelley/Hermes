@@ -9,9 +9,6 @@
 
 namespace Hermes.Data.Integration.Test.EntityFramework
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class TestClass
     {
         public int Id { get; set; }

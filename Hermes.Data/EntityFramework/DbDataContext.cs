@@ -1,6 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
-using System.Linq;
 using Hermes.Data.Repositories.Interfaces;
 
 namespace Hermes.Data.EntityFramework

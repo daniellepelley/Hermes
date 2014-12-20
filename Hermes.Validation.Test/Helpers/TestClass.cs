@@ -1,4 +1,4 @@
-﻿namespace Hermes.Validation.Test
+﻿namespace Hermes.Validation.Test.Helpers
 {
     public class TestClass
     {

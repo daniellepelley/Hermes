@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Hermes.Data.Repositories.Interfaces;
 
 namespace Hermes.Data.InMemory

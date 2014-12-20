@@ -1,5 +1,4 @@
-﻿using Hermes.Data;
-using Hermes.Data.Repositories.Interfaces;
+﻿using Hermes.Data.Repositories.Interfaces;
 
 namespace Hermes.Data.Repositories.ConcreteFactories
 {
