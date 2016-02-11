@@ -53,6 +53,7 @@ namespace Hermes.Data.Integration.Test
         }
 
         [Test]
+        [Ignore]
         public void SortedFilteredPaged()
         {
             var list = TestList().ToArray();
@@ -76,6 +77,7 @@ namespace Hermes.Data.Integration.Test
         }
 
         [Test]
+        [Ignore]
         public void SortedFilteredPagedFromJson()
         {
             var list = TestList().ToArray();

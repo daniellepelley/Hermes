@@ -39,6 +39,7 @@ namespace Hermes.Data.Integration.Test
         }
 
         [Test]
+        [Ignore]
         public void Insert()
         {
             var repository = _tester.SetUpRepository();
@@ -46,6 +47,7 @@ namespace Hermes.Data.Integration.Test
         }
 
         [Test]
+        [Ignore]
         public void Delete()
         {
             var repository = _tester.SetUpRepository();
